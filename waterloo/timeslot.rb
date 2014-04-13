@@ -1,7 +1,7 @@
 module Waterloo
   class TimeSlot
     attr_reader :meeting_info
-    attr_accessor :instructor, :section, :location
+    attr_accessor :instructor, :section, :locations
 
     def initialize(meeting_info)
       @meeting_info = meeting_info

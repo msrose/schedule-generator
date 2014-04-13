@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+table {
+border-collapse: collapse
+}
+td {
+  border: 1px solid black;
+  width: 100px
+}
+</style>
+</head>
+<body>
+  <h1><%= @title %></h1>
+  <h2><%= @term %></h2>
+  <table>
+    <tr>
+      <td></td>
+      <% @time_markers.each do |marker| %>
+        <td><%= marker %></td>
+      <% end %>
+    </tr>
+    <% @grid.each do |day, time_slots| %>
+      <tr>
+        <td><%= day.capitalize %></td>
+        <% time_slots.each do |time_slot| %>
+          <td><%= time_slot %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</body>
+</html>
