@@ -1,0 +1,174 @@
+{
+  "courses": [
+    {
+      "code": "CS 240",
+      "name": "Data Structures & Data Mgmt",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "tuesday": ["14:30", "15:50"],
+            "thursday": ["14:30", "15:50"]
+          },
+          "instructor": "Alejandro Lopez-Ortiz",
+          "section": "LEC 001",
+          "locations": [
+            "MC 2066"
+          ]
+        },
+        {
+          "meeting_info": {
+            "thursday": ["8:30", "9:20"]
+          },
+          "instructor": "",
+          "section": "TUT 101",
+          "locations": [
+            "OPT 1129"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "CS 247",
+      "name": "Software Engineering Principles",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "tuesday": ["10:00", "11:20"],
+            "thursday": ["10:00", "11:20"]
+          },
+          "instructor": "Joanne Atlee",
+          "section": "LEC 001",
+          "locations": [
+            "MC 2065"
+          ]
+        },
+        {
+          "meeting_info": {
+            "friday": ["9:30", "10:20"]
+          },
+          "instructor": "",
+          "section": "TUT 101",
+          "locations": [
+            "MC 2065"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "SE 202",
+      "name": "Seminar",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "tuesday": ["11:30", "12:20"]
+          },
+          "instructor": "Daniel Berry",
+          "section": "SEM 001",
+          "locations": [
+            "MC 1085"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "ENGL 140R",
+      "name": "The Uses of English 1",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "monday": ["16:00", "17:20"],
+            "wednesday": ["16:00", "17:20"]
+          },
+          "instructor": "John Vardon",
+          "section": "LEC 002",
+          "locations": [
+            "REN 2107"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "MATH 213",
+      "name": "Advanced Mathematics for Software Eng",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "monday": ["13:00", "14:20"],
+            "wednesday": ["13:00", "14:20"]
+          },
+          "instructor": "John Thistle",
+          "section": "LEC 001",
+          "locations": [
+            "MC 2066"
+          ]
+        },
+        {
+          "meeting_info": {
+            "wednesday": ["10:30", "11:20"]
+          },
+          "instructor": "",
+          "section": "TUT 101",
+          "locations": [
+            "MC 2066"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "MATH 239",
+      "name": "Intro to Combinatorics",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "monday": ["14:30", "15:20"],
+            "wednesday": ["14:30", "15:20"],
+            "friday": ["14:30", "15:20"]
+          },
+          "instructor": "Alexander Nelson",
+          "section": "LEC 004",
+          "locations": [
+            "MC 2066"
+          ]
+        },
+        {
+          "meeting_info": {
+            "friday": ["8:30", "9:20"]
+          },
+          "instructor": "",
+          "section": "TUT 104",
+          "locations": [
+            "AL 113"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "MSCI 261",
+      "name": "Financial Management for Engineers",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "monday": ["11:30", "12:20"],
+            "wednesday": ["11:30", "12:20"],
+            "friday": ["11:30", "12:20"]
+          },
+          "instructor": "Alexander Cozzarin",
+          "section": "LEC 004",
+          "locations": [
+            "EV3 1408"
+          ]
+        },
+        {
+          "meeting_info": {
+            "wednesday": ["8:30", "9:20"]
+          },
+          "instructor": "",
+          "section": "TUT 104",
+          "locations": [
+            "CPH 1346"
+          ]
+        }
+      ]
+    }
+  ]
+}

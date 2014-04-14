@@ -1,15 +1,16 @@
 module Waterloo
   class Course
-    attr_reader :code
-    attr_accessor :name, :lecture, :tutorial, :lab, :test
+    attr_reader :code, :time_slots
+    attr_accessor :name, :type
 
     def initialize(code)
       @code = code
+      @time_slots = []
       yield self if block_given?
     end
 
-    def time_slots
-      [@lecture, @tutorial, @lab, @test].compact
+    def add_time_slot(time_slot)
+      @time_slots.push(time_slot)
     end
   end
 end
