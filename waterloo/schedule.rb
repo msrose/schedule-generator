@@ -13,6 +13,7 @@ module Waterloo
       @courses = courses
       @orientation = :horizontal
       @legends = [:instructor, :location]
+      @colors = ['white']
       yield self if block_given?
 
       interval_size = time_interval_size(DAY_START_TIME, calculate_day_end)
@@ -33,7 +34,7 @@ module Waterloo
     private
 
       def populate_grid
-        @courses.each do |course|
+        @courses.each_with_index do |course, k|
           course.time_slots.each do |time_slot|
             time_slot.meeting_info.each do |days, (start_time, end_time)|
               first_slot = (minute_value(start_time) - @day_start_minute_val) / MINUTES_PER_SLOT
@@ -42,7 +43,11 @@ module Waterloo
                 day_symbol = day.to_sym
                 for i in first_slot...last_slot
                   if @grid[day_symbol][i].nil?
-                    @grid[day_symbol][i] = course.code + ' ' + time_slot.section
+                    @grid[day_symbol][i] = {
+                      id: time_slot.id,
+                      text: course.code + ' ' + time_slot.section,
+                      color: @colors[k % @colors.count]
+                    }
                   else
                     raise "Time conflict for #{course.code} from #{start_time} - #{end_time}"
                   end

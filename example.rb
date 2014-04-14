@@ -23,4 +23,6 @@ end
 Waterloo::Schedule.new(courses) do |schedule|
   schedule.title = "Michael Rose Software Engineering Schedule"
   schedule.term = "Spring 2014"
+  schedule.colors = ['orange', 'blue', 'red', 'yellow', 'green', 'pink', 'cyan']
+  # schedule.orientation = :vertical
 end.generate

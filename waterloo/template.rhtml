@@ -9,25 +9,49 @@
       border: 1px solid black;
       width: 100px
     }
+    tr {
+      height: 75px
+    }
   </style>
 </head>
 <body>
   <h1><%= @title %></h1>
   <h2><%= @term %></h2>
   <table>
-    <tr>
-      <td></td>
-      <% @time_markers.each do |marker| %>
-        <td><%= marker %></td>
-      <% end %>
-    </tr>
-    <% @grid.each do |day, time_slots| %>
+    <% if @orientation == :horizontal %>
       <tr>
-        <td><%= day.capitalize %></td>
-        <% time_slots.each do |time_slot| %>
-          <td><%= time_slot %></td>
+        <td></td>
+        <% @time_markers.each do |marker| %>
+          <td><%= marker %></td>
         <% end %>
       </tr>
+      <% @grid.each do |day, time_slots| %>
+        <tr>
+            <td><%= day.capitalize %></td>
+            <% time_slots.each do |time_slot| %>
+              <td style="background-color:<%= time_slot.nil? ? 'white' : time_slot[:color] %>">
+                <%= time_slot.nil? ? '' : time_slot[:text] %>
+              </td>
+            <% end %>
+        </tr>
+      <% end %>
+    <% elsif @orientation == :vertical %>
+      <tr>
+        <td></td>
+        <% @grid.keys.each do |day| %>
+          <td><%= day.capitalize %></td>
+        <% end %>
+      </tr>
+      <% @time_markers.each_with_index do |marker, i| %>
+        <tr>
+          <td><%= marker %></td>
+          <% @grid.values.each do |time_slots| %>
+            <td style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>">
+              <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
     <% end %>
   </table>
 </body>
