@@ -7,10 +7,6 @@
     }
     td {
       border: 1px solid black;
-      width: 100px
-    }
-    tr {
-      height: 75px
     }
   </style>
 </head>
@@ -28,9 +24,14 @@
       <% @grid.each do |day, time_slots| %>
         <tr>
             <td><%= day.capitalize %></td>
-            <% time_slots.each do |time_slot| %>
-              <td style="background-color:<%= time_slot.nil? ? 'white' : time_slot[:color] %>">
-                <%= time_slot.nil? ? '' : time_slot[:text] %>
+            <% i = 0 %>
+            <% while i < time_slots.length %>
+              <% span = time_slots[i].nil? ? 1 : calculate_span_value(time_slots[i][:id], i, time_slots) %>
+              <td
+                style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>"
+                colspan="<%= span %>">
+                <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
+                <% i += span %>
               </td>
             <% end %>
         </tr>

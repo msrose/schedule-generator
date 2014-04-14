@@ -80,5 +80,14 @@ module Waterloo
           '%d:%02d' % min_val.divmod(60)
         end
       end
+
+      def calculate_span_value(id, index, time_slots)
+        span = 1
+        while (index += 1) < time_slots.length
+          break unless time_slots[index] && time_slots[index][:id] == id
+          span += 1
+        end
+        span
+      end
   end
 end
