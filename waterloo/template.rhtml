@@ -1,59 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style type="text/css">
-    table {
-      border-collapse: collapse
-    }
-    td {
-      border: 1px solid black;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
   <h1><%= @title %></h1>
   <h2><%= @term %></h2>
-  <table>
-    <% if @orientation == :horizontal %>
-      <tr>
-        <td></td>
-        <% @time_markers.each do |marker| %>
-          <td><%= marker %></td>
-        <% end %>
-      </tr>
-      <% @grid.each do |day, time_slots| %>
+  <div class="section">
+    <table>
+      <% if @orientation == :horizontal %>
         <tr>
-            <td><%= day.capitalize %></td>
+          <th></th>
+          <% @time_markers.each do |marker| %>
+            <th class="left-align"><%= twelve_hour_time(marker) %></th>
+          <% end %>
+        </tr>
+        <% @grid.each do |day, time_slots| %>
+          <tr>
+            <th class="right-align"><%= day.capitalize %></th>
             <% i = 0 %>
             <% while i < time_slots.length %>
               <% span = time_slots[i].nil? ? 1 : calculate_span_value(time_slots[i][:id], i, time_slots) %>
               <td
+                class="time-slot"
                 style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>"
                 colspan="<%= span %>">
                 <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
                 <% i += span %>
               </td>
             <% end %>
-        </tr>
-      <% end %>
-    <% elsif @orientation == :vertical %>
-      <tr>
-        <td></td>
-        <% @grid.keys.each do |day| %>
-          <td><%= day.capitalize %></td>
+          </tr>
         <% end %>
-      </tr>
-      <% @time_markers.each_with_index do |marker, i| %>
+      <% elsif @orientation == :vertical %>
         <tr>
-          <td><%= marker %></td>
-          <% @grid.values.each do |time_slots| %>
-            <td style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>">
-              <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
-            </td>
+          <td></td>
+          <% @grid.keys.each do |day| %>
+            <td><%= day.capitalize %></td>
           <% end %>
         </tr>
+        <% @time_markers.each_with_index do |marker, i| %>
+          <tr>
+            <td><%= marker %></td>
+            <% @grid.values.each do |time_slots| %>
+              <td style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>">
+                <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
+    </table>
+  </div>
+  <div class="section">
+    <table>
+      <tr>
+        <th>Colour</th>
+        <th>Course</th>
+        <th>Name</th>
+        <th>Instructor</th>
+      </tr>
+      <% @courses.each_with_index do |course, i| %>
+        <tr>
+          <td style="background-color:<%= @colors[i % colors.length] %>"></td>
+          <td><%= course.code %></td>
+          <td><%= course.name %></td>
+          <td><%= course.instructor %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </body>
 </html>

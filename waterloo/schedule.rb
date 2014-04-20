@@ -5,6 +5,7 @@ module Waterloo
     DAYS = [:monday, :tuesday, :wednesday, :thursday, :friday]
     MINUTES_PER_SLOT = 30
     DAY_START_TIME = '8:30'
+    TIME_FORMAT = '%d:%02d'
 
     attr_reader :courses
     attr_accessor :title, :term, :orientation, :legends, :colors
@@ -45,7 +46,7 @@ module Waterloo
                   if @grid[day_symbol][i].nil?
                     @grid[day_symbol][i] = {
                       id: time_slot.id,
-                      text: course.code + ' ' + time_slot.section,
+                      text: course.code + '<br>' + time_slot.section + '<br>' + time_slot.locations.first,
                       color: @colors[k % @colors.count]
                     }
                   else
@@ -77,7 +78,7 @@ module Waterloo
       def initialize_time_markers(interval_size)
         @time_markers = (0...interval_size).to_a.map do |el|
           min_val = @day_start_minute_val + MINUTES_PER_SLOT * el
-          '%d:%02d' % min_val.divmod(60)
+          TIME_FORMAT % min_val.divmod(60)
         end
       end
 
@@ -88,6 +89,15 @@ module Waterloo
           span += 1
         end
         span
+      end
+
+      def twelve_hour_time(time)
+        hour, minute = time.split(':').map(&:to_i)
+        if hour <= 12
+          time
+        else
+          TIME_FORMAT % [hour - 12, minute]
+        end
       end
   end
 end
