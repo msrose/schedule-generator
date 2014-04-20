@@ -2,7 +2,7 @@
   "courses": [
     {
       "code": "CS 240",
-      "name": "Data Structures & Data Mgmt",
+      "name": "Data Structures and Data Management",
       "time_slots": [
         {
           "meeting_info": {
@@ -89,7 +89,7 @@
     },
     {
       "code": "MATH 213",
-      "name": "Advanced Mathematics for Software Eng",
+      "name": "Advanced Mathematics for Software Engineering",
       "time_slots": [
         {
           "meeting_info": {
@@ -116,7 +116,7 @@
     },
     {
       "code": "MATH 239",
-      "name": "Intro to Combinatorics",
+      "name": "Introduction to Combinatorics",
       "time_slots": [
         {
           "meeting_info": {
