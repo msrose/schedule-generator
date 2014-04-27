@@ -13,7 +13,7 @@ module Waterloo
     def initialize(courses = [])
       @courses = courses
       @orientation = :horizontal
-      @legends = [:instructor, :location]
+      @legends = [:course_name, :instructor]
       @colors = ['white']
       yield self if block_given?
 

@@ -51,23 +51,33 @@
       <% end %>
     </table>
   </div>
-  <div class="section">
-    <table>
-      <tr>
-        <th>Colour</th>
-        <th>Course</th>
-        <th>Name</th>
-        <th>Instructor</th>
-      </tr>
-      <% @courses.each_with_index do |course, i| %>
+  <% if @legends.count > 0 %>
+    <div class="section">
+      <table>
         <tr>
-          <td style="background-color:<%= @colors[i % colors.length] %>"></td>
-          <td><%= course.code %></td>
-          <td><%= course.name %></td>
-          <td><%= course.instructor %></td>
+          <th>Colour</th>
+          <th>Course</th>
+          <% if @legends.include?(:course_name) %>
+            <th>Name</th>
+          <% end %>
+          <% if @legends.include?(:instructor) %>
+            <th>Instructor</th>
+          <% end %>
         </tr>
-      <% end %>
-    </table>
-  </div>
+        <% @courses.each_with_index do |course, i| %>
+          <tr>
+            <td style="background-color:<%= @colors[i % colors.length] %>"></td>
+            <td><%= course.code %></td>
+            <% if @legends.include?(:course_name) %>
+              <td><%= course.name %></td>
+            <% end %>
+            <% if @legends.include?(:instructor) %>
+              <td><%= course.instructor %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
 </body>
 </html>
