@@ -20,11 +20,10 @@
             <th class="right-align"><%= day.capitalize %></th>
             <% i = 0 %>
             <% while i < time_slots.length %>
-              <% span = time_slots[i].nil? ? 1 : calculate_span_value(time_slots[i][:id], i, time_slots) %>
               <td
                 class="time-slot"
                 style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>"
-                colspan="<%= span %>">
+                colspan="<%= span = calculate_span_value(time_slots, i) %>">
                 <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
                 <% i += span %>
               </td>
@@ -35,12 +34,12 @@
         <tr>
           <td></td>
           <% @grid.keys.each do |day| %>
-            <td><%= day.capitalize %></td>
+            <th><%= day.capitalize %></th>
           <% end %>
         </tr>
         <% @time_markers.each_with_index do |marker, i| %>
           <tr>
-            <td><%= marker %></td>
+            <th><%= marker %></th>
             <% @grid.values.each do |time_slots| %>
               <td style="background-color:<%= time_slots[i].nil? ? 'white' : time_slots[i][:color] %>">
                 <%= time_slots[i].nil? ? '' : time_slots[i][:text] %>
