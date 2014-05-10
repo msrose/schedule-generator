@@ -127,7 +127,7 @@
           "instructor": "Alexander Nelson",
           "section": "LEC 004",
           "locations": {
-            "default": "MC 2066"
+            "default": "RCH 302"
           }
         },
         {
@@ -152,7 +152,7 @@
             "wednesday": ["11:30", "12:20"],
             "friday": ["11:30", "12:20"]
           },
-          "instructor": "Alexander Cozzarin",
+          "instructor": "Brian Cozzarin",
           "section": "LEC 004",
           "locations": {
             "default": "EV3 1408"
