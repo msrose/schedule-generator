@@ -1,1 +1,4 @@
 *.html
+config.json
+*.swp
+*.swo

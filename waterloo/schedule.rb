@@ -30,7 +30,7 @@ module Waterloo
     end
 
     def generate
-      puts ERB.new(File.open(TEMPLATE_PATH).read).result(binding).gsub(/^\s+/, '')
+      ERB.new(File.open(TEMPLATE_PATH).read).result(binding).gsub(/^\s+/, '')
     end
 
     private
