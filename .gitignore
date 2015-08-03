@@ -1,6 +1,6 @@
+config/*
+!config/config.example.json
+tmp/
 *.html
-config.json
-cache.json
-1159.json
 *.swp
 *.swo
