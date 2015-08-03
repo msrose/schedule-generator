@@ -3,7 +3,7 @@ module Waterloo
     def self.convert(unconverted_data)
       course_data_list = []
       unconverted_data.each do |ud|
-        api_data = ud[0]['data'][0]
+        api_data = ud[0]
         changed_data = {}
 
         code = "#{api_data['subject']} #{api_data['catalog_number']}"
@@ -14,8 +14,7 @@ module Waterloo
 
         time_slots = []
 
-        ud.each do |nd|
-          number_data = nd['data'][0]
+        ud.each do |number_data|
           time_slot = {}
           number_data['classes'].each do |c|
             time_slot['meeting_info'] = {}

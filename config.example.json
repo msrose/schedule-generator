@@ -1,7 +1,9 @@
 {
-    "api_key": "based-api-key",
+    "api_key": "best-api-key",
     "cache_http_requests": true,
     "term": 1159,
+    "title": "Michael Rose Software Engineering Schedule",
+    "colors": ["orange", "#4D4DFF", "red", "yellow", "#339933", "pink", "cyan"],
     "course_numbers": [
       [6405],
       [8010, 8011, 8014],
