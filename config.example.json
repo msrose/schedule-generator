@@ -1,6 +1,7 @@
 {
     "api_key": "best-api-key",
     "cache_http_requests": true,
+    "cache_file_name": "cachefile.json",
     "term": 1159,
     "title": "Michael Rose Software Engineering Schedule",
     "colors": ["orange", "#4D4DFF", "red", "yellow", "#339933", "pink", "cyan"],

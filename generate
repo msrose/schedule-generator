@@ -1,3 +1,5 @@
+#! /usr/bin/ruby
+
 require 'json'
 
 require './waterloo/course'
@@ -6,19 +8,28 @@ require './waterloo/schedule'
 require './waterloo/api_converter'
 require './waterloo/api_client'
 
-config = JSON.parse(File.open('./config.json').read)
+config_file_name = ARGV[0]
+output_file_name = ARGV[1]
+
+if config_file_name.nil? || !File.exists?(config_file_name)
+  STDERR.puts 'No configuration file specified!'
+  exit
+end
+
+config = JSON.parse(File.open(config_file_name).read)
 client = Waterloo::ApiClient.new(config['api_key'], config['term'])
+cache_file_name = config['cache_file_name']
 
 api_data = []
 term = {}
 
-if config['cache_http_requests'] && File.exists?('./cache.json')
-  cache = JSON.parse(File.open('./cache.json').read)
+if config['cache_http_requests'] && File.exists?(cache_file_name)
+  cache = JSON.parse(File.open(cache_file_name).read)
 
   api_data = cache['data'] || api_data
   term = cache['term'] || term
 
-  STDERR.puts 'Read data from cache file. (To get the latest data, delete the file.)'
+  STDERR.puts "Read data from #{cache_file_name}. (To get the latest data, delete the file.)"
 elsif
   term = client.get_term(config['term'])
   STDERR.puts "Got data for #{term['name']} term."
@@ -39,8 +50,8 @@ elsif
   cache_data = { 'data' => api_data, 'term' => term }
 
   if config['cache_http_requests']
-    File.open('./cache.json', 'w+') { |file| file.write(cache_data.to_json) }
-    STDERR.puts 'Cached data in file cache.json.'
+    File.open(cache_file_name, 'w+') { |file| file.write(cache_data.to_json) }
+    STDERR.puts "Cached data in file #{cache_file_name}."
   end
 end
 
@@ -70,4 +81,11 @@ schedule = Waterloo::Schedule.new(courses) do |s|
   s.colors = config['colors'] || []
 end
 
-puts schedule.generate
+html = schedule.generate
+
+if !output_file_name.nil?
+  File.open(output_file_name, 'w+') { |file| file.write(html) }
+  STDERR.puts "Output written to #{output_file_name}."
+else
+  puts html
+end
