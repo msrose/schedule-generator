@@ -56,8 +56,77 @@ where the numbers are the course numbers for lecture, tutorial and lab. If I'm a
 ## Generating a Schedule
 
 ```
-$ ./generate config_file.json [output_file.html]
+$ ./generate config_file.json [output_file]
 ```
 
 You must specify a config file with the above options in it, as in [the example config file](./config.example.json).
-If you don't want to specify and output file, the generated HTML will be sent to STDOUT; otherwise, a file named `output_file.html` will be created, containing the generated HTML.
+If you don't want to specify an output file, the generated HTML will be sent to STDOUT; otherwise, a file named `output_file` will be created, containing the generated HTML.
+
+## A Note on Data Format
+
+The `Schedule` class uses data in the following format to generate the schedule:
+
+```
+{
+  "courses": [
+    {
+      "code": "CS 240",
+      "name": "Data Structures and Data Management",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "tuesday": ["14:30", "15:50"],
+            "thursday": ["14:30", "15:50"]
+          },
+          "instructor": "Alejandro Lopez-Ortiz",
+          "section": "LEC 001",
+          "locations": {
+            "default": "MC 2066"
+          }
+        },
+        {
+          "meeting_info": {
+            "thursday": ["8:30", "9:20"]
+          },
+          "instructor": "",
+          "section": "TUT 101",
+          "locations": {
+            "default": "OPT 1129"
+          }
+        }
+      ]
+    },
+    {
+      "code": "CS 247",
+      "name": "Software Engineering Principles",
+      "time_slots": [
+        {
+          "meeting_info": {
+            "tuesday": ["10:00", "11:20"],
+            "thursday": ["10:00", "11:20"]
+          },
+          "instructor": "Joanne Atlee",
+          "section": "LEC 001",
+          "locations": {
+            "default": "MC 2065"
+          }
+        },
+        {
+          "meeting_info": {
+            "friday": ["9:30", "10:20"]
+          },
+          "instructor": "",
+          "section": "TUT 101",
+          "locations": {
+            "default": "MC 2065"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The `CourseList` class can be used to generate a list of `Course` objects from a hash representation of the above JSON, which is then passed to a `Schedule` object on construction.
+
+This format isn't the same as the Open Data API, so the `ApiConverter` was written to convert the API data to the appropriate format before constructing a list of `Course` objects with `CourseList.construct`.

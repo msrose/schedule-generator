@@ -3,6 +3,7 @@
 require 'json'
 
 require './waterloo/course'
+require './waterloo/course_list'
 require './waterloo/timeslot'
 require './waterloo/schedule'
 require './waterloo/api_converter'
@@ -56,24 +57,7 @@ elsif
 end
 
 course_data_list = Waterloo::ApiConverter.convert(api_data)
-
-courses = []
-
-course_data_list.each do |course_data|
-  course = Waterloo::Course.new(course_data['code']) do |c|
-    c.name = course_data['name']
-    course_data['time_slots'].each do |time_slot_data|
-      time_slot = Waterloo::TimeSlot.new(time_slot_data['meeting_info']) do |t|
-        c.instructor ||= time_slot_data['instructor']
-        t.instructor = time_slot_data['instructor']
-        t.section = time_slot_data['section']
-        t.locations = time_slot_data['locations']
-      end
-      c.add_time_slot(time_slot)
-    end
-  end
-  courses.push(course)
-end
+courses = Waterloo::CourseList.construct(course_data_list)
 
 schedule = Waterloo::Schedule.new(courses) do |s|
   s.title = config['title'] || ''
