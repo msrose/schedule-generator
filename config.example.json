@@ -1,5 +1,6 @@
 {
     "api_key": "based-api-key",
+    "cache_http_requests": true,
     "term": 1159,
     "course_numbers": [
       [6405],

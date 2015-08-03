@@ -11,12 +11,24 @@ client = Waterloo::ApiClient.new(config['api_key'], config['term'])
 
 api_data = []
 
-config['course_numbers'].each do |list|
-  data_list = []
-  list.each do |n|
-    data_list.push(client.get_course(n))
+if config['cache_http_requests'] && File.exists?('./cache.json')
+  api_data = JSON.parse(File.open('./cache.json').read)['data']
+  STDERR.puts 'Read data from cached HTTP requests.'
+elsif
+  config['course_numbers'].each do |list|
+    data_list = []
+    list.each do |n|
+      data_list.push(client.get_course(n))
+    end
+    api_data.push(data_list)
+    course = data_list[0]['data'][0]
+    STDERR.puts "Got data for #{course['subject']} #{course['catalog_number']}: #{course['title']}."
   end
-  api_data.push(data_list)
+
+  if config['cache_http_requests']
+    File.open('./cache.json', 'w+').write({ 'data' => api_data }.to_json)
+    STDERR.puts 'Cached HTTP requests in file.'
+  end
 end
 
 course_data_list = Waterloo::ApiConverter.convert(api_data)
