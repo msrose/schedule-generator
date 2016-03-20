@@ -1,9 +1,9 @@
-require './waterloo/course'
-require './waterloo/course_list'
-require './waterloo/timeslot'
-require './waterloo/schedule'
-require './waterloo/api_converter'
-require './waterloo/api_client'
+require_relative './waterloo/course'
+require_relative './waterloo/course_list'
+require_relative './waterloo/timeslot'
+require_relative './waterloo/schedule'
+require_relative './waterloo/api_converter'
+require_relative './waterloo/api_client'
 
 class Generator
   def self.create_schedule(config)

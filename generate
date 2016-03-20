@@ -2,7 +2,7 @@
 
 require 'json'
 
-require './generator'
+require_relative './generator'
 
 config_file_name = ARGV[0]
 output_file_name = ARGV[1]

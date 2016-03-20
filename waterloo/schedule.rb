@@ -6,7 +6,7 @@ module Waterloo
     MINUTES_PER_SLOT = 30
     DAY_START_TIME = '8:30'
     TIME_FORMAT = '%d:%02d'
-    TEMPLATE_PATH = './waterloo/template.rhtml'
+    TEMPLATE_PATH = File.dirname(__FILE__) + '/template.rhtml'
 
     attr_reader :courses
     attr_accessor :title, :term, :orientation, :legends, :colors
